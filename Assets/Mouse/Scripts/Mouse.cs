@@ -1,6 +1,6 @@
-using System;
 using UnityEngine;
 using UnityEngine.Events;
+using System.Collections.Generic;
 
 public class Mouse : MonoBehaviour
 {
@@ -12,8 +12,11 @@ public class Mouse : MonoBehaviour
 	public float multiplier = 1.25f;
 	public float scaleSpeedSeconds = 0.05f;
 	public Vector3 offset;
+	public List<Sprite> sprites; // 0 - default; 1 - wait
 	Camera camera;
 	MouseState lastFrameMouseState;
+	float timeUntilNextRotation; // loading mouse rotation
+	SpriteRenderer childRend;
 
 	// Param: last frame mouse state
 	// Param: new mouse state
@@ -41,11 +44,15 @@ public class Mouse : MonoBehaviour
 
 		Cursor.visible = false;
 		camera = Camera.main;
+		
+		childRend  = transform.GetChild(0).GetComponent<SpriteRenderer>(); // watch out!
 	}
 	void Update()
 	{
 		MoveMouse();
 		ScaleMouse();
+		AnimateMouse();
+		ChangeMouseTexture();
 
 		if (Input.GetMouseButtonDown(0))
 		{
@@ -76,5 +83,31 @@ public class Mouse : MonoBehaviour
 		var multiply = mouseState is not (MouseState.Default or MouseState.Wait) ? multiplier : 1f;
 		// smoothly scale mouse cursor
 		transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one * (defaultScale * multiply), Time.deltaTime / scaleSpeedSeconds); // TODO: Replace with easing library
+	}
+	
+	void AnimateMouse()
+	{
+		if (mouseState != MouseState.Wait)
+		{
+			transform.rotation = Quaternion.identity;
+			return;
+		}
+		// Loading Mouse Rotation
+		if (timeUntilNextRotation <= 0)
+		{
+			timeUntilNextRotation = 0.5f;
+			transform.Rotate(new Vector3(0, 0, 90f)); // Might need to rotate the children instead
+		}
+		timeUntilNextRotation -= Time.deltaTime;
+	}
+
+	void ChangeMouseTexture()
+	{
+		if (mouseState == MouseState.Wait)
+		{
+			childRend.sprite = sprites[1];
+			return;
+		}
+		childRend.sprite = sprites[0];
 	}
 }

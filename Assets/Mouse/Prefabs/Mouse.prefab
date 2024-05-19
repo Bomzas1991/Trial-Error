@@ -45,11 +45,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9244a7a72b2b23547897204fae7788e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseState: 1
+  mouseState: 0
   defaultScale: 0.3
   multiplier: 1.25
   scaleSpeedSeconds: 0.05
   offset: {x: 0, y: 0, z: 0}
+  sprites:
+  - {fileID: 7468580986311863201, guid: 11d523397705cd64584b18552b1c9a15, type: 3}
+  - {fileID: -6532657587734482487, guid: 0dbc7e009c3f784499ce6e35e0d6a1fa, type: 3}
+  onMouseStateChange:
+    m_PersistentCalls:
+      m_Calls: []
+  onMouseClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &7123943039306927246
 PrefabInstance:
   m_ObjectHideFlags: 0
