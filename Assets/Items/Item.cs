@@ -15,6 +15,6 @@ public class Item : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.velocity = new Vector2(rb.velocity.x, -fallingSpeed);
+        rb.velocity = new Vector2(0, -fallingSpeed);
     }
 }

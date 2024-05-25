@@ -2,23 +2,27 @@ using UnityEngine;
 
 public class ItemDragging : MonoBehaviour
 {
-    public bool isBeingDragged;
     Mouse mouse;
-
-    private void Start()
+    Vector3 offset;
+    
+    void Start()
     {
         mouse = Mouse.Instance;
     }
 
-    private void OnMouseDrag()
+    void OnMouseDown()
     {
-        transform.position = mouse.transform.position;
+        offset = transform.position - mouse.transform.position;
+    }
+
+    void OnMouseDrag()
+    {
+        transform.position = mouse.transform.position + offset;
         mouse.SetDragging(true);
     }
 
-    private void OnMouseUp()
+    void OnMouseUp()
     {
-        isBeingDragged = false;
         mouse.SetDragging(false);
     }
 }
