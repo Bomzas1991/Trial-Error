@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1379751996890682897}
   - component: {fileID: 5335301110653195800}
-  - component: {fileID: 8286812638772793882}
   m_Layer: 0
   m_Name: Mouse
   m_TagString: Untagged
@@ -54,47 +53,16 @@ MonoBehaviour:
   sprites:
   - {fileID: 7468580986311863201, guid: 11d523397705cd64584b18552b1c9a15, type: 3}
   - {fileID: -6532657587734482487, guid: 0dbc7e009c3f784499ce6e35e0d6a1fa, type: 3}
+  isDragging: 0
+  isHovering: 0
+  isCutscene: 0
+  interactableCount: 0
   onMouseStateChange:
     m_PersistentCalls:
       m_Calls: []
   onMouseClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!58 &8286812638772793882
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3120071911906957016}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.3
 --- !u!1001 &7123943039306927246
 PrefabInstance:
   m_ObjectHideFlags: 0

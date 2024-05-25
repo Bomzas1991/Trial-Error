@@ -80,7 +80,7 @@ public class Mouse : MonoBehaviour
 	void MoveMouse()
 	{
 		var pos = camera.ScreenToWorldPoint(Input.mousePosition) + positionOffset;
-		pos.z = 0.1f; // weird offset, so mouse can drag items
+		pos.z = 0f;
 		transform.position = pos;
 	} // Move mouse to mouse cursor
 
@@ -120,6 +120,11 @@ public class Mouse : MonoBehaviour
 
 	void ChangeMouseState()
 	{
+		if (isCutscene)
+		{
+			mouseState = MouseState.Wait;
+			return;
+		}
         if (isDragging)
 		{
 			mouseState = MouseState.Drag;
@@ -130,38 +135,15 @@ public class Mouse : MonoBehaviour
 			mouseState = MouseState.Hover;
 			return;
 		}
-		if (isCutscene)
-		{
-			mouseState = MouseState.Wait;
-			return;
-		}
 		mouseState = MouseState.Default;
 	} // Set mouseState to correct MouseState
 
 	void DetectItemHover()
-    {
-		// TODO: Fix bugs
-        switch (interactableCount)
-        {
-            case > 0:
-                isHovering = true;
-                break;
-            case <= 0:
-				isHovering = false;
-                interactableCount = 0;
-                break;
-        }
-    } // Detect if mouse is hovering over an item
+	{
+		var raycast = Physics2D.Raycast(transform.position, Vector2.zero); // Vector2.zero == Vector3.forward
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-		interactableCount++;
-	} // TODO: shoot a raycast/circlecast instead of a collider
-
-	private void OnTriggerExit2D(Collider2D collision)
-    {
-		interactableCount--;
-    }
+		isHovering = (bool)raycast; // true if the ray hit something, false otherwise
+	} // Detect if mouse is hovering over an item
 
     public void SetDragging(bool _isDragging)
     {
