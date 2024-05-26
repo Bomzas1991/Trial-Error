@@ -4,6 +4,7 @@ public class ItemDragging : MonoBehaviour
 {
     Mouse mouse;
     Vector3 offset;
+    public bool isDragging;
     
     void Start()
     {
@@ -19,10 +20,12 @@ public class ItemDragging : MonoBehaviour
     {
         transform.position = mouse.transform.position + offset;
         mouse.SetDragging(true);
+        isDragging = true;
     }
 
     void OnMouseUp()
     {
         mouse.SetDragging(false);
+        isDragging = false;
     }
 }
