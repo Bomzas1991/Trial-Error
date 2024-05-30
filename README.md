@@ -7,3 +7,5 @@ Similar game: There is no game
 Dominykas K. - Manager - UI
 
 Ultimopo - Voice Actor
+
+ReloadingBee - Programmer
