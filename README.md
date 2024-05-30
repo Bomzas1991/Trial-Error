@@ -9,3 +9,5 @@ Dominykas K. - Manager - UI
 Ultimopo - Voice Actor
 
 ReloadingBee - Programmer
+
+Kristupas - Art
